@@ -16,8 +16,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Model graphmodel ;
-        View graphview ;
+        Model graphmodel = null ;
+        View graphview = null ;
 
         Controler graphcontrol = new Controler(graphmodel, graphview);
         graphview = new View(graphcontrol);
