@@ -3,7 +3,11 @@
  * and open the template in the editor.
  */
 
-package graphviewer;
+package graphviewer.controleur;
+
+import graphviewer.vue.View;
+import graphviewer.model.Modele;
+import graphviewer.*;
 
 /**
  *
@@ -15,12 +19,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Model graphmodel = null ;
+       
+        Modele graphmodel = null ;
         View graphview = null ;
 
         Controler graphcontrol = new Controler(graphmodel, graphview);
-        graphview = new View(graphcontrol);
+       // graphview = new View(graphcontrol);
 
     }
 
