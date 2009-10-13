@@ -30,7 +30,7 @@ public class ModeleNoeud {
 
     @Override
     public String toString() {
-        return "\n noeud id = " + id ;
+        return " noeud id = " + id +"\t" ;
     }
 
 

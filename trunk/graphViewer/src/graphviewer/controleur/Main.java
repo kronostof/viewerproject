@@ -20,12 +20,8 @@ public class Main {
      */
     public static void main(String[] args) {
        
-        Modele graphmodel = null ;
-        View graphview = null ;
-
-        Controler graphcontrol = new Controler(graphmodel, graphview);
-       // graphview = new View(graphcontrol);
-
+        Modele graphmodel = new Modele() ;
+        View graphview = new View();
+        new Controler(graphmodel, graphview);
     }
-
 }
