@@ -28,14 +28,15 @@ public class Controler {
      * @param vue
      */
     public Controler(Modele modele, View vue) {
-        graphmodel = new Modele();
-        this.graphvue  = new View(this);
-        this.graphvue.init(graphmodel);
+        graphmodel = modele;
+        graphvue  = vue;
+        graphvue.initControleur(this);
+        graphvue.initModele(graphmodel);
     }
 
     public Graph getGraph() {
         return graphmodel.getGraph();
-    }
+    } 
 
     /** le pattern est en place une simple modification du model par cette methode déclenche
      * une fois la modification terminée une notification de tous les observateur potentiel.

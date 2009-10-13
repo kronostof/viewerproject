@@ -5,12 +5,13 @@
 
 package graphviewer.vue;
 
-
-import edu.uci.ics.jung.algorithms.layout.CircleLayout; // a ne pas utiliser
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.SpringLayout;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
+
 import graphviewer.controleur.Controler;
 import graphviewer.model.*;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,26 +41,27 @@ public class View extends JPanel implements Observer,ActionListener{
      */
     JButton bouton1 = null;
     
-    public View (Controler controle) {
-        super();
+    public View () {
 
-        this.controler = controle;
+        super();
         frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-         JPanel jpanel1 = new JPanel();
+    }
 
-         // The Layout<V, E> is parameterized by the vertex and edge types
-        layout = new CircleLayout(controle.getGraph());
+
+    public void initControleur (Controler controle) {
+
+        this.controler = controle;
+        JPanel jpanel1 = new JPanel();
+        // The Layout<V, E> is parameterized by the vertex and edge types
+        layout = new SpringLayout<ModeleNoeud, ModeleArrete>(controle.getGraph());
         layout.setSize(new Dimension(300,300)); // sets the initial size of the space
          // The BasicVisualizationServer<V,E> is parameterized by the edge types
          vv =new BasicVisualizationServer<ModeleNoeud,ModeleArrete>(layout);
          vv.setPreferredSize(new Dimension(350,350)); //Sets the viewing area size
 
          jpanel1.add(vv);
-         //frame.getContentPane().add(vv);
-
-        
 
          // TODO Ceci est un bouton bibon pour tester la mise en place du patron Observer
          bouton1 = new JButton("toto");
@@ -73,7 +75,7 @@ public class View extends JPanel implements Observer,ActionListener{
 
     }
 
-   public void init(Modele model) {
+   public void initModele(Modele model) {
     model.addObserver(this); // (2) ajout d'observateur
   }
 
@@ -82,8 +84,7 @@ public class View extends JPanel implements Observer,ActionListener{
        
         System.out.println("Vue: mamamia le model m'ordonne de me réafficher !");
         frame.repaint();
- 
-    }
+     }
 
 
     void testbouton1(){
@@ -96,7 +97,7 @@ public class View extends JPanel implements Observer,ActionListener{
     public void actionPerformed(ActionEvent arg0) {
 
         if(arg0.getSource() == bouton1)
-        testbouton1();
+            testbouton1();
         }
 
 
