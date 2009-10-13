@@ -34,8 +34,7 @@ public class Modele extends Observable{
     public Modele() {
         super();
         graph = new UndirectedSparseGraph();
-        //factory=UndirectedSparseGraph.getFactory();
-
+        
         int i = 0;
         n1 = new ModeleNoeud(i, i, i, i+" nom ", i+" prenom ", new Date());
         graph.addVertex(n1);
