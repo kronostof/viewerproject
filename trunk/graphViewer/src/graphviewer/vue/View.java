@@ -10,7 +10,7 @@ import edu.uci.ics.jung.algorithms.layout.SpringLayout;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
 
 import graphviewer.controleur.Controler;
-import graphviewer.model.*;
+import graphviewer.model.Modele;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -32,8 +32,8 @@ public class View extends JPanel implements Observer,ActionListener{
     Controler controler = null;
 
 
-    Layout<ModeleNoeud,ModeleArrete> layout = null;
-    BasicVisualizationServer<ModeleNoeud,ModeleArrete> vv = null;
+    Layout<VueNoeud,VueArrete> layout = null;
+    BasicVisualizationServer<VueNoeud,VueArrete> vv = null;
     
     private JFrame frame;
     /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
@@ -55,10 +55,10 @@ public class View extends JPanel implements Observer,ActionListener{
         this.controler = controle;
         JPanel jpanel1 = new JPanel();
         // The Layout<V, E> is parameterized by the vertex and edge types
-        layout = new SpringLayout<ModeleNoeud, ModeleArrete>(controle.getGraph());
+        layout = new SpringLayout<VueNoeud, VueArrete>(controle.getGraph());
         layout.setSize(new Dimension(300,300)); // sets the initial size of the space
          // The BasicVisualizationServer<V,E> is parameterized by the edge types
-         vv =new BasicVisualizationServer<ModeleNoeud,ModeleArrete>(layout);
+         vv =new BasicVisualizationServer<VueNoeud,VueArrete>(layout);
          vv.setPreferredSize(new Dimension(350,350)); //Sets the viewing area size
 
          jpanel1.add(vv);
