@@ -85,7 +85,7 @@ public class View extends JPanel implements Observer,ActionListener{
         System.out.println("Vue: mamamia le model m'ordonne de me réafficher !");
         frame.repaint();
      }
-
+ 
 
     void testbouton1(){
         System.out.println("Vue: ya ya to to qui qui se sent pressé !");
