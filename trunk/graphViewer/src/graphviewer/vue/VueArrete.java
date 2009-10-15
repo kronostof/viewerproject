@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author chris
  */
-class VueArrete {
+public class VueArrete {
     private int id = -1;
     private VueNoeud n1=null,
                      n2=null;

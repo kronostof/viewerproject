@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author chris
  */
-class VueNoeud {
+public class VueNoeud {
     private int id = -1;
     // Liste des arretes liées au noeud.
     
