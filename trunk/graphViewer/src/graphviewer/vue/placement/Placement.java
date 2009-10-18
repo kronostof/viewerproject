@@ -13,9 +13,7 @@ import graphviewer.vue.*;
  * @author chris
  */
 public class Placement {
-
-
-        Graph<VueNoeud,VueArrete> graph = null;
+         Graph<VueNoeud,VueArrete> graph = null;
 
         
 

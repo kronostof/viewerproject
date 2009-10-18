@@ -39,7 +39,8 @@ public class View extends JPanel implements Observer,ActionListener{
     /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
      * le model notifie qu'il est modifier, l'interface en écoutant se réaffiche (normalement !)
      */
-    JButton bouton1 = null;
+    JButton testPatronObsv = null;
+    JButton reorganiser = null;
     
     public View () {
 
@@ -64,12 +65,15 @@ public class View extends JPanel implements Observer,ActionListener{
          jpanel1.add(vv);
 
          // TODO Ceci est un bouton bibon pour tester la mise en place du patron Observer
-         bouton1 = new JButton("toto");
-         bouton1.addActionListener(this);
-         jpanel1.add(bouton1);
+         testPatronObsv = new JButton("(toto) tester pattron observer");
+         testPatronObsv.addActionListener(this);
+         jpanel1.add(testPatronObsv);
+         //TODO : ceci est un essai de vincent pour la réorga spatiale du graphe
+         reorganiser = new JButton("réorganiser");
+         reorganiser.addActionListener(this);
+         jpanel1.add(reorganiser);
 
          frame.getContentPane().add(jpanel1);
-
          frame.pack();
          frame.setVisible(true);
 
@@ -87,18 +91,27 @@ public class View extends JPanel implements Observer,ActionListener{
      }
  
 
-    void testbouton1(){
+    void procTestPatronObsv(){
         System.out.println("Vue: ya ya to to qui qui se sent pressé !");
         System.out.println("Vue: On va tout rapporter au controleur, niark niark niark !!!");
         controler.uneModif();
     }
 
+    void procReorganiser() {
+        //demande au controleur de dire au modele de se reorga en fonction de ce que je lui demande
+        controler.organize();
+    }
+
+
 
     public void actionPerformed(ActionEvent arg0) {
 
-        if(arg0.getSource() == bouton1)
-            testbouton1();
+        if(arg0.getSource() == testPatronObsv) {
+            procTestPatronObsv();
+        } else if(arg0.getSource() == reorganiser) {
+            procReorganiser();
         }
+    }
 
 
 }

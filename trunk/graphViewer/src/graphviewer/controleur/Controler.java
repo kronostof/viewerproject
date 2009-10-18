@@ -44,6 +44,14 @@ public class Controler {
     public void uneModif() {
         System.out.println("Controleur : bon la vue a cafftée , puisque c'est comme ça on demande au controleur de se modifier.");
         this.graphmodel.uneModif();
+        /*
+         * Vincent -  byzarre "la vue a cafftée on demande au controleur de se modifier" mais on appel une methode de graphmodel.
+         * est ce que la phrase est bonne ?  ps: je sais je sais le code source n'est pas un chat hihi :)
+         */
+    }
+
+    public void organize() {
+        this.graphmodel.organize();
     }
     
 }

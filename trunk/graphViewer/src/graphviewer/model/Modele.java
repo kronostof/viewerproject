@@ -17,8 +17,16 @@ import java.util.Observable;
 public class Modele extends Observable{
 
 
+    /**
+     * TODO : donnée des attributs au membre de cette classe (private ? public ? protected ?).
+     */
+    /**
+     *  graph est le graphe nommé GRAPHE de DOnnées lors de la réunion du jeudi 15 oct
+     */
     Graph<ModeleNoeud,ModeleArrete> graph = null;
-    ModeleNoeud n1 = null ,n2 = null;
+    ModeleNoeud n1 = null ;
+    ModeleNoeud n2 = null;
+
     ArrayList<ModeleNoeud> listeDeNoeud = new ArrayList<ModeleNoeud>();
     /**  Variable temporaire utilisée un peu partout.
      * une utilisation sans une intialisation a toutes
@@ -76,6 +84,9 @@ public class Modele extends Observable{
         System.out.println(graph);
     }
 
+    public void organize() {
+        System.out.println("Be patient, it will come :) ");
+    }
 
 
 
