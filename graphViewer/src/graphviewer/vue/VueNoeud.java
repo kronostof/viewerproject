@@ -16,6 +16,16 @@ public class VueNoeud {
     private int id = -1;
     private double x,y,z;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    
     public double getX() {
         return x;
     }
@@ -72,7 +82,7 @@ public class VueNoeud {
 
     @Override
     public String toString() {
-        return " (VUE)noeud id = " + id +"\t" ;
+        return " noeud id = " + id +"\t" ;
     }
 
 }
