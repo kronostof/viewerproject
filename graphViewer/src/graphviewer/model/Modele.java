@@ -52,7 +52,7 @@ public class Modele extends Observable{
         graph = new UndirectedSparseGraph();
         graphVisualisation = new GraphDeVisualisation(graph);
 
-        int i = 0;
+        i = 0;
         n1 = new ModeleNoeud(i, i, i, i+" nom ", i+" prenom ", new Date());
         // TODO : CHK . faire une surcouche des graphe afin de génerere dans la foulée le graph de visualisation
         graph.addVertex(n1);
@@ -69,16 +69,20 @@ public class Modele extends Observable{
             n1 = n2;
             
         }
-        //    n2 = new NoeudModel(i+1, i+1, i+1, i+1+" nom ", i+1+" prenom ", new Date());
-          //  graph.addEdge(new arreteModel(i+1), n1,n2);
-
+        
 
         // On a notre Graph venant d'un fichier ou autre. Ilnous faut cree le graph de visualisation.
           System.out.println(graph);
-        // CONSTRUCTION DU GRAPH DE VISUALISATION
-          
-          
+
+
+          // CONSTRUCTION DU GRAPH DE VISUALISATION
           graphVisualisation = new GraphDeVisualisation(graph);
+
+          /** Affichage pour test:  On passe le graph de visualisation a l afficheur de jung !
+           * Les algo de placement peuvent commencer a bosser !
+           *System.out.println(graphVisualisation);
+           *graph = (Graph)graphVisualisation.getGraph();
+           */
           
     }
 
