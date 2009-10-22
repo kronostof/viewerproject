@@ -5,6 +5,7 @@
 
 package graphviewer.vue;
 
+import graphviewer.model.ModeleNoeud;
 import java.awt.Color;
 
 /**
@@ -13,6 +14,32 @@ import java.awt.Color;
  */
 public class VueNoeud {
     private int id = -1;
+    private double x,y,z;
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getZ() {
+        return z;
+    }
+
+    public void setZ(double z) {
+        this.z = z;
+    }
+    
     // Liste des arretes liées au noeud.
     
 
@@ -31,6 +58,21 @@ public class VueNoeud {
         
 
     }
+    
+    
+    public VueNoeud(ModeleNoeud newModel) {
+        id = newModel.getID();
+        
 
+    }
+
+
+
+
+
+    @Override
+    public String toString() {
+        return " (VUE)noeud id = " + id +"\t" ;
+    }
 
 }
