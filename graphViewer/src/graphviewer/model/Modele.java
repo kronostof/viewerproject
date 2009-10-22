@@ -9,6 +9,7 @@ package graphviewer.model;
  * @author vincent
  */
 import edu.uci.ics.jung.graph.*;
+import graphviewer.model.visualisation.GraphDeVisualisation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
@@ -27,6 +28,13 @@ public class Modele extends Observable{
     ModeleNoeud n1 = null ;
     ModeleNoeud n2 = null;
 
+
+
+    GraphDeVisualisation graphVisualisation = null;
+
+
+
+
     ArrayList<ModeleNoeud> listeDeNoeud = new ArrayList<ModeleNoeud>();
     /**  Variable temporaire utilisée un peu partout.
      * une utilisation sans une intialisation a toutes
@@ -42,24 +50,36 @@ public class Modele extends Observable{
     public Modele() {
         super();
         graph = new UndirectedSparseGraph();
-        
+        graphVisualisation = new GraphDeVisualisation(graph);
+
         int i = 0;
         n1 = new ModeleNoeud(i, i, i, i+" nom ", i+" prenom ", new Date());
+        // TODO : CHK . faire une surcouche des graphe afin de génerere dans la foulée le graph de visualisation
         graph.addVertex(n1);
         listeDeNoeud.add(n1);
+        ModeleArrete art;
         for (i = 1; i < 5; i++) {
             n2 = new ModeleNoeud(i, i, i, i + " nom ", i +" prenom ", new Date());
             
             listeDeNoeud.add(n2);
             graph.addVertex(n2);
-            graph.addEdge(new ModeleArrete(i), n1,n2);
+            art = new ModeleArrete(i);
+            graph.addEdge(art, n1,n2);
+            
             n1 = n2;
             
         }
         //    n2 = new NoeudModel(i+1, i+1, i+1, i+1+" nom ", i+1+" prenom ", new Date());
           //  graph.addEdge(new arreteModel(i+1), n1,n2);
 
+
+        // On a notre Graph venant d'un fichier ou autre. Ilnous faut cree le graph de visualisation.
           System.out.println(graph);
+        // CONSTRUCTION DU GRAPH DE VISUALISATION
+          
+          
+          graphVisualisation = new GraphDeVisualisation(graph);
+          
     }
 
     /**
