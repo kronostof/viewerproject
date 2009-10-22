@@ -35,6 +35,8 @@ public class GraphDeVisualisation{
         int nbredge  = newGraph.getEdgeCount();
 
 
+        
+
         //TODO pour chaque arrete on cree un objet VueArrete relier correctement !
 
      /*
@@ -57,6 +59,10 @@ public class GraphDeVisualisation{
 */
         // AFFICHAGE DU GRAPH DE VISUALISATION
         System.out.println(graph);
+    }
+
+    public Graph<VueNoeud, VueArrete> getGraph() {
+        return graph;
     }
 
 
