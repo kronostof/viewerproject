@@ -28,6 +28,10 @@ public class ModeleNoeud {
             this.dateDeNaissance = dateDeNaissance;
     }
 
+    public int getID() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return " noeud id = " + id +"\t" ;

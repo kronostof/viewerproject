@@ -16,6 +16,10 @@ public class ModeleArrete {
     this.id = id ;
     }
 
+    public int getID() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "\n arrete id = " + id;
