@@ -5,6 +5,8 @@
 
 package graphviewer.vue.vue3d;
 
+import graphviewer.vue.VueArrete;
+import graphviewer.vue.VueNoeud;
 import java.util.ArrayList;
 import javax.media.opengl.GLAutoDrawable;
 
@@ -15,6 +17,26 @@ import javax.media.opengl.GLAutoDrawable;
 public class GraphVue {
 
     private ArrayList<NoeudVue> listeNoeud;
+
+    public void setListeArc(ArrayList<VueArrete> listeArc) {
+
+        VueNoeud tmp,tmp1;
+        /*
+        for (VueArrete arc : listeArc) {
+            tmp = arc.get
+            this.listeArc.add(new VueArrete(tmp, tmp1));
+            tmp1= tmp;
+        }
+        */
+
+    }
+
+    public void setListeNoeud(ArrayList<VueNoeud> listeNoeud) {
+        for (VueNoeud noeud : listeNoeud) {
+            this.listeNoeud.add(new NoeudVue(noeud.getX(),noeud.getY(),noeud.getZ()));
+        }
+
+    }
     private ArrayList<ArcVue> listeArc;
 
     public GraphVue(){

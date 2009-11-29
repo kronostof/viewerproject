@@ -156,7 +156,7 @@ private Animator animator;
 
 
     @Override
-    public void initControleur (Controler controle) {
+    public void initControleur (final Controler controle) {
 /*
         this.controler = controle;
         JPanel jpanel1 = new JPanel();
@@ -196,13 +196,17 @@ private Animator animator;
                     Logger.getLogger(getClass().getName()).log(Level.INFO, "can not enable system look and feel", ex);
                 }
 
-                Vue frame = new Vue();
+               // Vue frame = new Vue();
+                //frame.setVisible(true);
+
+
+                frame = new Vue();
                 frame.setVisible(true);
 
                 initComponents();
-
-        //panel.addGLEventListener(new GLRenderer(controle.getGraph()));
-        panel.addGLEventListener(new GLRenderer());
+                
+        panel.addGLEventListener(new GLRenderer(controle.getGraph()));
+        //panel.addGLEventListener(new GLRenderer());
         animator = new Animator(panel);
 
             }
