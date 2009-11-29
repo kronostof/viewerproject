@@ -24,6 +24,12 @@ public class NoeudVue {
         this.z = z;
     }
 
+    NoeudVue(double x, double y, double z) {
+        this.x = (float) x;
+        this.y = (float) y;
+        this.z = (float) z;
+    }
+
     public void afficher(GLAutoDrawable drawable){
         
         GL gl = drawable.getGL();

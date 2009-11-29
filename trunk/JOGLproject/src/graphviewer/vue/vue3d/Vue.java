@@ -37,7 +37,7 @@ public class Vue extends JFrame {
         initComponents();
         setTitle("Simple Graph Viewer");
 
-        //panel.addGLEventListener(new GLRenderer());
+        panel.addGLEventListener(new GLRenderer());
         animator = new Animator(panel);
 
         this.addWindowListener(new WindowAdapter() {

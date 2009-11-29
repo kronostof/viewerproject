@@ -1,6 +1,9 @@
 package graphviewer.vue.vue3d;
 
 import graphviewer.model.visualisation.GraphDeVisualisation;
+import graphviewer.vue.VueArrete;
+import graphviewer.vue.VueNoeud;
+import java.util.ArrayList;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
@@ -17,14 +20,20 @@ import javax.media.opengl.glu.GLUquadric;
 public class GLRenderer implements GLEventListener {
 
     
-    //GraphDeVisualisation graphDeVisualisation = null;
+    GraphDeVisualisation graphDeVisualisation = null;
     
-  /*
+
+
+    GLRenderer() {
+        super();
+    }
+
+
     GLRenderer(GraphDeVisualisation graph) {
         super();
         graphDeVisualisation = graph;
     }
-*/
+
     public void init(GLAutoDrawable drawable) {
         // Use debug pipeline
         // drawable.setGL(new DebugGL(drawable.getGL()));
@@ -65,7 +74,19 @@ public class GLRenderer implements GLEventListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
+        // TODO a remplacer par le graphe de visualisation directement !!! URGENT
+        GraphVue gv = new GraphVue();
+        if (graphDeVisualisation != null) {
 
+            for (VueNoeud noeud : graphDeVisualisation.getGraph().getVertices()){
+                gv.ajouterNoeud(new NoeudVue(noeud.getX(),noeud.getY(),noeud.getZ()));
+
+                 gv.setListeNoeud(new ArrayList<VueNoeud>(graphDeVisualisation.getGraph().getVertices()));
+          //TODO gerrer les arrette
+          //  gv.setListeArc(new ArrayList<VueArrete>(graphDeVisualisation.getGraph().getEdges()));
+            }
+        }else{
+           
         //Recupere liste NoeudModele -> NoeudVue
         NoeudVue nv1 = new NoeudVue(-1.0f, 1.0f, 0.0f);
         NoeudVue nv2 = new NoeudVue(-3.0f, 5.0f, -2.0f);
@@ -76,7 +97,7 @@ public class GLRenderer implements GLEventListener {
         ArcVue av2 = new ArcVue(nv1, nv3);
         ArcVue av3 = new ArcVue(nv1, nv4);
        
-        GraphVue gv = new GraphVue();
+        
         gv.ajouterNoeud(nv1);
         gv.ajouterNoeud(nv2);
         gv.ajouterNoeud(nv3);
@@ -85,6 +106,10 @@ public class GLRenderer implements GLEventListener {
         gv.ajouterArc(av2);
         gv.ajouterArc(av3);
 
+        
+
+            
+        }
         gv.afficher(drawable);
 
         gl.glFlush();
