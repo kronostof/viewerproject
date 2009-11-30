@@ -38,6 +38,7 @@ public class VueNoeud3D {
         this.z = (float) vueNoeud.getZ();
     }
 
+
     public void afficher(GLAutoDrawable drawable){
         
         GL gl = drawable.getGL();
@@ -72,6 +73,12 @@ public class VueNoeud3D {
 
     int getID() {
         return id;
+    }
+
+    void setXYZ(double nx, double ny, int nz) {
+        this.x = (float) nx;
+        this.y = (float) ny;
+        this.z = (float) nz;
     }
 
 

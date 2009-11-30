@@ -5,8 +5,7 @@
 
 package graphviewer.controleur;
 
-import edu.uci.ics.jung.graph.Graph;
-import graphviewer.*;
+
 import graphviewer.model.Modele;
 import graphviewer.model.visualisation.GraphDeVisualisation;
 import graphviewer.vue.abstrVue;
@@ -20,8 +19,8 @@ public class Controler {
 
 
 
-    private Modele graphmodel;
-    private abstrVue graphvue;
+    private Modele partieModel;
+    private abstrVue partieVue;
 
     /**
      * initialisation du model et de la vue.
@@ -29,14 +28,16 @@ public class Controler {
      * @param vue
      */
     public Controler(Modele modele, abstrVue vue) {
-        graphmodel = modele;
-        graphvue  = vue;
-        graphvue.initControleur(this);
-        graphvue.initModele(graphmodel);
+        partieModel = modele;
+        
+        partieVue  = vue;
+        
+        partieVue.initControleur(this);
+        partieVue.initModele(partieModel);
     }
 
     public GraphDeVisualisation getGraph() {
-        return graphmodel.getGraph();
+        return partieModel.getGraph();
     } 
 
     /** le pattern est en place une simple modification du model par cette methode déclenche
@@ -44,9 +45,9 @@ public class Controler {
      */
     public void uneModifAjouterNoeud() {
         System.out.println("Controleur : bon la vue a cafftée , puisque c'est comme ça on demande au controleur de se modifier.");
-        this.graphmodel.uneModif();
+        this.partieModel.uneModif();
     }
     public void organize() {
-        this.graphmodel.organize();
+        this.partieModel.organize();
     }
 }
