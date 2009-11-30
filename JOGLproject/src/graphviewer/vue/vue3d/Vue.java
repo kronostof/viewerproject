@@ -33,11 +33,37 @@ public class Vue extends JFrame {
 
 
     /** Creates new form MainFrame */
-    public Vue() {
+/*    public Vue() {
         initComponents();
         setTitle("Simple Graph Viewer");
 
         panel.addGLEventListener(new GLRenderer());
+        animator = new Animator(panel);
+
+        this.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Run this on another thread than the AWT event queue to
+                // make sure the call to Animator.stop() completes before
+                // exiting
+                new Thread(new Runnable() {
+
+                    public void run() {
+                        animator.stop();
+                        System.exit(0);
+                    }
+                }).start();
+            }
+        });
+    }
+*/
+    Vue(GraphDeVisualisation3D graph) {
+
+        initComponents();
+        setTitle("Simple Graph Viewer");
+
+        panel.addGLEventListener(new GLRenderer(graph));
         animator = new Animator(panel);
 
         this.addWindowListener(new WindowAdapter() {
@@ -142,7 +168,7 @@ public class Vue extends JFrame {
     /**
     * @param args the command line arguments
     */
-    public static void main(String args[]) {
+  /*  public static void main(String args[]) {
         // Run this in the AWT event thread to prevent deadlocks and race conditions
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -159,7 +185,7 @@ public class Vue extends JFrame {
             }
         });
     }
-
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GLJPanel panel;
     // End of variables declaration//GEN-END:variables

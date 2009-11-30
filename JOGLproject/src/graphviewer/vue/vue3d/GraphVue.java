@@ -16,7 +16,7 @@ import javax.media.opengl.GLAutoDrawable;
  */
 public class GraphVue {
 
-    private ArrayList<NoeudVue> listeNoeud;
+    private ArrayList<VueNoeud3D> listeNoeud;
 
     public void setListeArc(ArrayList<VueArrete> listeArc) {
 
@@ -33,22 +33,22 @@ public class GraphVue {
 
     public void setListeNoeud(ArrayList<VueNoeud> listeNoeud) {
         for (VueNoeud noeud : listeNoeud) {
-            this.listeNoeud.add(new NoeudVue(noeud.getX(),noeud.getY(),noeud.getZ()));
+            this.listeNoeud.add(new VueNoeud3D(noeud.getX(),noeud.getY(),noeud.getZ()));
         }
 
     }
-    private ArrayList<ArcVue> listeArc;
+    private ArrayList<VueArrete3D> listeArc;
 
     public GraphVue(){
-        listeNoeud = new ArrayList<NoeudVue>();
-        listeArc = new ArrayList<ArcVue>();
+        listeNoeud = new ArrayList<VueNoeud3D>();
+        listeArc = new ArrayList<VueArrete3D>();
     }
 
-    public void ajouterNoeud(NoeudVue nv){
+    public void ajouterNoeud(VueNoeud3D nv){
         listeNoeud.add(nv);
     }
 
-    public void ajouterArc(ArcVue av){
+    public void ajouterArc(VueArrete3D av){
         listeArc.add(av);
     }
 
@@ -57,15 +57,15 @@ public class GraphVue {
         int i;
 
         // il faut absolument dessiner les arcs avant les noeuds... Sinon les arcs se redessinent sur les noeud (utiliser DepthTest ?)
-        ArcVue tempAV;
+        VueArrete3D tempAV;
         for (i=0 ;i<listeArc.size(); i++){
-            tempAV = (ArcVue) listeArc.get(i);
+            tempAV = (VueArrete3D) listeArc.get(i);
             tempAV.afficher(drawable);
         }
 
-        NoeudVue tempNV;
+        VueNoeud3D tempNV;
         for (i=0 ;i<listeNoeud.size(); i++){
-            tempNV = (NoeudVue) listeNoeud.get(i);
+            tempNV = (VueNoeud3D) listeNoeud.get(i);
             tempNV.afficher(drawable);
         }
         

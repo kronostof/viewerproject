@@ -17,6 +17,10 @@ public class VueArrete {
     private VueNoeud n1=null,
                      n2=null;
 
+    public int getId() {
+        return id;
+    }
+
     /**
      * Attribue utilisé a des fin de test
      */
@@ -46,6 +50,7 @@ public class VueArrete {
         couleur = Color.red;
         id = newArrete.getID();
     }
+
 
 
     @Override

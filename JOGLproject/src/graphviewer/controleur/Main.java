@@ -23,8 +23,9 @@ public class Main {
     public static void main(String[] args) {
        
         Modele graphmodel = new Modele() ;
-        //View graphview = new View();
-        View3d graphview = new View3d();
+        View graphview = new View();
+        View3d graphview3d = new View3d();
         new Controler(graphmodel, graphview);
+        new Controler(graphmodel, graphview3d);
     }
 }

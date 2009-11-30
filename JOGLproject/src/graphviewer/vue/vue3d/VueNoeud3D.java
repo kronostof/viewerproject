@@ -1,5 +1,6 @@
 package graphviewer.vue.vue3d;
 
+import graphviewer.vue.VueNoeud;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
@@ -9,25 +10,32 @@ import javax.media.opengl.glu.GLUquadric;
  *
  * @author Mathouston
  */
-public class NoeudVue {
-
+public class VueNoeud3D {
+    private int id = -1;
     private float x;
     private float y;
     private float z;
 
     private static final float rayon = (float) 0.1;
 
-    public NoeudVue (float x, float y, float z){
+    public VueNoeud3D (float x, float y, float z){
 
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    NoeudVue(double x, double y, double z) {
+    VueNoeud3D(double x, double y, double z) {
         this.x = (float) x;
         this.y = (float) y;
         this.z = (float) z;
+    }
+
+    VueNoeud3D(VueNoeud vueNoeud) {
+        id = vueNoeud.getId();
+        this.x = (float) vueNoeud.getX();
+        this.y = (float) vueNoeud.getY();
+        this.z = (float) vueNoeud.getZ();
     }
 
     public void afficher(GLAutoDrawable drawable){
@@ -56,4 +64,16 @@ public class NoeudVue {
     public float getZ(){
         return z;
     }
+
+    @Override
+    public String toString() {
+        return "x="+x+ " y="+y+ " z="+z;
+    }
+
+    int getID() {
+        return id;
+    }
+
+
+
 }
