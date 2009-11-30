@@ -28,17 +28,13 @@ import java.awt.Dimension;
 public abstract class abstrVue extends JFrame implements Observer,ActionListener{
 
     Controler controler = null;
-    Layout<VueNoeud,VueArrete> layout = null;
-    BasicVisualizationServer<VueNoeud,VueArrete> vv = null;
-    JButton testPatronObsv = null;
-    JButton reorganiser = null;
-    protected JFrame frame;
+
 
 
     
     public void initControleur (Controler controle) {
 
-        this.controler = controle;
+       /* this.controler = controle;
         JPanel jpanel1 = new JPanel();
         // The Layout<V, E> is parameterized by the vertex and edge types
         layout = new SpringLayout<VueNoeud, VueArrete>(controle.getGraph().getGraph());
@@ -61,11 +57,11 @@ public abstract class abstrVue extends JFrame implements Observer,ActionListener
          frame.getContentPane().add(jpanel1);
          frame.pack();
          frame.setVisible(true);
-
+*/
     }
 
    public void initModele(Modele model) {
-    model.addObserver(this); // (2) ajout d'observateur
+    //model.addObserver(this); // (2) ajout d'observateur
   }
 
    

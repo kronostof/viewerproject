@@ -45,7 +45,7 @@ import javax.swing.WindowConstants;
  */
 public class View3d extends abstrVue implements Observer,ActionListener{
 
-private Animator animator;
+    private Animator animator;
     Controler controler = null;
 
 
@@ -59,6 +59,7 @@ private Animator animator;
     JButton testPatronObsv = null;
     JButton reorganiser = null;
 
+    GraphDeVisualisation3D graph;
 
 
 
@@ -67,9 +68,6 @@ private Animator animator;
         super();
         frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-
     }
 
 
@@ -157,79 +155,15 @@ private Animator animator;
 
     @Override
     public void initControleur (final Controler controle) {
-/*
+
         this.controler = controle;
-        JPanel jpanel1 = new JPanel();
-        // The Layout<V, E> is parameterized by the vertex and edge types
-        layout = new SpringLayout<VueNoeud, VueArrete>(controle.getGraph());
-        layout.setSize(new Dimension(300,300)); // sets the initial size of the space
-         // The BasicVisualizationServer<V,E> is parameterized by the edge types
-         vv =new BasicVisualizationServer<VueNoeud,VueArrete>(layout);
-         vv.setPreferredSize(new Dimension(350,350)); //Sets the viewing area size
+        graph = new GraphDeVisualisation3D(controle.getGraph());
 
-         jpanel1.add(vv);
-
-         // TODO Ceci est un bouton bibon pour tester la mise en place du patron Observer
-         testPatronObsv = new JButton("(toto) tester pattron observer");
-         testPatronObsv.addActionListener(this);
-         jpanel1.add(testPatronObsv);
-         //TODO : ceci est un essai de vincent pour la réorga spatiale du graphe
-         reorganiser = new JButton("réorganiser");
-         reorganiser.addActionListener(this);
-         jpanel1.add(reorganiser);
-
-         frame.getContentPane().add(jpanel1);
-         frame.pack();
-         frame.setVisible(true);
-*/
-
-
-
-        // Run this in the AWT event thread to prevent deadlocks and race conditions
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                // switch to system l&f for native font rendering etc.
-                try{
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                }catch(Exception ex) {
-                    Logger.getLogger(getClass().getName()).log(Level.INFO, "can not enable system look and feel", ex);
-                }
-
-               // Vue frame = new Vue();
-                //frame.setVisible(true);
-
-
-                frame = new Vue();
+                frame = new Vue(graph);
                 frame.setVisible(true);
-
-                initComponents();
-                
-        panel.addGLEventListener(new GLRenderer(controle.getGraph()));
-        //panel.addGLEventListener(new GLRenderer());
-        animator = new Animator(panel);
-
-            }
-        });
-
-        this.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Run this on another thread than the AWT event queue to
-                // make sure the call to Animator.stop() completes before
-                // exiting
-                new Thread(new Runnable() {
-
-                    public void run() {
-                        animator.stop();
-                        System.exit(0);
-                    }
-                }).start();
-            }
-        });
     }
 
+    @Override
    public void initModele(Modele model) {
     model.addObserver(this); // (2) ajout d'observateur
   }

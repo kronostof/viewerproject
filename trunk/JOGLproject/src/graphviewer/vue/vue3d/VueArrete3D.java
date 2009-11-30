@@ -5,22 +5,30 @@
 
 package graphviewer.vue.vue3d;
 
+import graphviewer.vue.VueArrete;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 
-public class ArcVue {
-    
-    private NoeudVue noeud1;
-    private NoeudVue noeud2;
+public class VueArrete3D {
+    private int id = -1;
+    private VueNoeud3D noeud1;
+    private VueNoeud3D noeud2;
 
     private static final float rayon = (float) 0.01;
 
-    public ArcVue(NoeudVue n1, NoeudVue n2){
+    public VueArrete3D(VueNoeud3D n1, VueNoeud3D n2){
             noeud1 = n1;
             noeud2 = n2;
 
+    }
+
+    VueArrete3D(VueArrete vueArrete,VueNoeud3D n1, VueNoeud3D n2) {
+        id = vueArrete.getId();
+
+        noeud1 = n1;
+        noeud2 = n2;
     }
 
     public void afficher(GLAutoDrawable drawable){

@@ -7,6 +7,7 @@ package graphviewer.vue;
 
 import graphviewer.model.ModeleNoeud;
 import java.awt.Color;
+import java.util.Random;
 
 /**
  *
@@ -72,7 +73,10 @@ public class VueNoeud {
     
     public VueNoeud(ModeleNoeud newModel) {
         id = newModel.getID();
-        
+        // valeur aleatoire pour les coordonnée parce que c est trop cool et trop moche
+        x = Math.random()*20-10;
+        y = Math.random()*20-10;
+        z = -20;//Math.random()*40-40;
 
     }
 

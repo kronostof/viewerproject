@@ -121,7 +121,7 @@ public class Modele extends Observable{
         n1 = new ModeleNoeud(i, i, i, i+" nom ", i+" prenom ", new Date());
         new_graph.addVertex(n1);
         listeDeNoeud.add(n1);
-        for (i = 1; i < 5; i++) {
+        for (i = 1; i < 10; i++) {
             n2 = new ModeleNoeud(i, i, i, i + " nom ", i +" prenom ", new Date());
 
             listeDeNoeud.add(n2);

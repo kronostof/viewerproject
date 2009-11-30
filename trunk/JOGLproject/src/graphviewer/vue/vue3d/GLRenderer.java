@@ -20,18 +20,19 @@ import javax.media.opengl.glu.GLUquadric;
 public class GLRenderer implements GLEventListener {
 
     
-    GraphDeVisualisation graphDeVisualisation = null;
+    public GraphDeVisualisation3D graphDeVisualisation = null;
     
 
-
+/*
     GLRenderer() {
         super();
     }
+*/
 
-
-    GLRenderer(GraphDeVisualisation graph) {
+    GLRenderer(GraphDeVisualisation3D graph) {
         super();
         graphDeVisualisation = graph;
+        System.out.println(graph.getListeNoeud().size());
     }
 
     public void init(GLAutoDrawable drawable) {
@@ -75,43 +76,13 @@ public class GLRenderer implements GLEventListener {
         // Reset the current matrix to the "identity"
         gl.glLoadIdentity();
         // TODO a remplacer par le graphe de visualisation directement !!! URGENT
-        GraphVue gv = new GraphVue();
-        if (graphDeVisualisation != null) {
-
-            for (VueNoeud noeud : graphDeVisualisation.getGraph().getVertices()){
-                gv.ajouterNoeud(new NoeudVue(noeud.getX(),noeud.getY(),noeud.getZ()));
-
-                 gv.setListeNoeud(new ArrayList<VueNoeud>(graphDeVisualisation.getGraph().getVertices()));
-          //TODO gerrer les arrette
-          //  gv.setListeArc(new ArrayList<VueArrete>(graphDeVisualisation.getGraph().getEdges()));
-            }
-        }else{
-           
-        //Recupere liste NoeudModele -> NoeudVue
-        NoeudVue nv1 = new NoeudVue(-1.0f, 1.0f, 0.0f);
-        NoeudVue nv2 = new NoeudVue(-3.0f, 5.0f, -2.0f);
-        NoeudVue nv3 = new NoeudVue(2.0f, -0.1f, -3.0f);
-        NoeudVue nv4 = new NoeudVue(0.0f, 4.5f, -2.3f);
-
-        ArcVue av1 = new ArcVue(nv1, nv2);
-        ArcVue av2 = new ArcVue(nv1, nv3);
-        ArcVue av3 = new ArcVue(nv1, nv4);
-       
         
-        gv.ajouterNoeud(nv1);
-        gv.ajouterNoeud(nv2);
-        gv.ajouterNoeud(nv3);
-        gv.ajouterNoeud(nv4);
-        gv.ajouterArc(av1);
-        gv.ajouterArc(av2);
-        gv.ajouterArc(av3);
+        if (graphDeVisualisation != null)
+            graphDeVisualisation.afficher(drawable);
+        else
+            System.out.println("graphDeVisualisation == null ! ! ! \n êtes tu sur de ce que tu fait ?");
 
         
-
-            
-        }
-        gv.afficher(drawable);
-
         gl.glFlush();
     }
 

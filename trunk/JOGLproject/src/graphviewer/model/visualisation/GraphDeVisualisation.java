@@ -18,7 +18,7 @@ import graphviewer.vue.VueNoeud;
 public class GraphDeVisualisation{
 
     
-    Graph<VueNoeud,VueArrete> graph = new UndirectedSparseGraph();;
+    public Graph<VueNoeud,VueArrete> graph = new UndirectedSparseGraph();
 
     public GraphDeVisualisation(Graph newGraph) {
     
