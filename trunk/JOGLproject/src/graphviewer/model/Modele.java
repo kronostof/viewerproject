@@ -10,6 +10,7 @@ package graphviewer.model;
  */
 import edu.uci.ics.jung.graph.*;
 import graphviewer.model.visualisation.GraphDeVisualisation;
+import graphviewer.vue.VueNoeud;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
@@ -78,16 +79,21 @@ public class Modele extends Observable{
     }
 
     public void uneModif() {
-        System.out.println("model: le controleur me demande de me modifier , mais c'est moi qui me modifie en fonction de mon humeur !");
+      //  System.out.println("model: le controleur me demande de me modifier , mais c'est moi qui me modifie en fonction de mon humeur !");
         i = graph.getVertexCount();
         n2 = new ModeleNoeud(i, i, i, i + " nom ", i +" prenom ", new Date());
+        VueNoeud nv = new VueNoeud(n2);
+        graphVisualisation.graph.addVertex(nv);
+            graphVisualisation.setData(nv);
+            
+        
         graph.addVertex(n2);
         listeDeNoeud.add(n2);
         graph.addEdge(new ModeleArrete(i),n2,listeDeNoeud.get(i-1));
         n1 = n2;
         System.out.println("model: Bon j'ai fini je dis a la vue de se bouger un peu.");
         setData();
-        System.out.println(graph);
+       // System.out.println(graph);
     }
 
 
@@ -132,8 +138,4 @@ public class Modele extends Observable{
         }
           return new_graph;
     }
-
-
-
-
 }

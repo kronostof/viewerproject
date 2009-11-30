@@ -11,17 +11,19 @@ import graphviewer.model.ModeleNoeud;
 import graphviewer.model.ModeleArrete;
 import graphviewer.vue.VueArrete;
 import graphviewer.vue.VueNoeud;
+import java.util.Observable;
 /**
  *
  * @author p0304320
  */
-public class GraphDeVisualisation{
+public class GraphDeVisualisation extends Observable{
 
     
-    public Graph<VueNoeud,VueArrete> graph = new UndirectedSparseGraph();
+    public Graph<VueNoeud,VueArrete> graph = new UndirectedSparseGraph();;
 
-    public GraphDeVisualisation(Graph newGraph) {
-    
+    public GraphDeVisualisation(Graph newGraph){
+
+        
         VueNoeud vn = null;
         VueArrete va = null;
         ModeleNoeud n1=null, n2=null;
@@ -71,10 +73,17 @@ public class GraphDeVisualisation{
 
 
 
-        // TODO methode de manipulatioon de l ensemble du graph.
+    // TODO cette methode est elle utilisée ?
+    public void setData() {
+    
+        setChanged(); // Positionne son indicateur de changement
+        notifyObservers(); // (1) notification
 
+    }
 
-        
-        
+    public void setData(VueNoeud nv) {
+         setChanged(); // Positionne son indicateur de changement
+        notifyObservers(nv); // (1) notification
 
+    }
 }

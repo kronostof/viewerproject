@@ -11,16 +11,19 @@ import graphviewer.model.visualisation.GraphDeVisualisation;
 import graphviewer.vue.VueArrete;
 import graphviewer.vue.VueNoeud;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.media.opengl.GLAutoDrawable;
 
 /**
  *
  * @author Mathouston
  */
-public class GraphDeVisualisation3D extends UndirectedSparseGraph {
+public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Observer{
 
     private ArrayList<VueNoeud3D> listeNoeud = new ArrayList<VueNoeud3D>();
     private ArrayList<VueArrete3D> listeArc = new ArrayList<VueArrete3D>();
+    private VueNoeud3D vn;
 
 
     public ArrayList<VueArrete3D> getListeArc() {
@@ -39,6 +42,7 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph {
     public Graph<VueNoeud3D,VueArrete3D> graph = new UndirectedSparseGraph();
 
     public GraphDeVisualisation3D(GraphDeVisualisation newGraph) {
+        newGraph.addObserver(this);
 
         VueNoeud3D vn = null;
         VueArrete3D va = null;
@@ -168,7 +172,7 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph {
 
     }
     
-
+/*
     public GraphDeVisualisation3D(){
         
         //Recupere liste NoeudModele -> NoeudVue
@@ -191,7 +195,8 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph {
         ajouterArc(av3);
 
     }
-
+*/
+    
     public void ajouterNoeud(VueNoeud3D nv){
         listeNoeud.add(nv);
     }
@@ -228,6 +233,16 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph {
                 break;
         }
         return vn;
+    }
+
+    public void update(Observable o, Object vueNoeud) {
+        System.out.println("XXXXXXXXXXXX    Not supported yet." + o + "XXX " + vueNoeud);
+         vn = new VueNoeud3D((VueNoeud)vueNoeud);
+            graph.addVertex(vn);
+            listeNoeud.add(vn);
+
+        graph.addVertex(vn);
+            listeNoeud.add(vn);
     }
 
 

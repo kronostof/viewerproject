@@ -18,12 +18,13 @@ import graphviewer.controleur.Controler;
 import javax.swing.JPanel;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.SpringLayout;
+import edu.uci.ics.jung.algorithms.layout.SpringLayout2;
 import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
 import graphviewer.model.Modele;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+
 import java.awt.Dimension;
-import java.util.Observable;
+
 
 
 
@@ -39,6 +40,10 @@ public class View extends abstrVue implements Observer,ActionListener{
     BasicVisualizationServer<VueNoeud,VueArrete> vv = null;
     JButton testPatronObsv = null;
     JButton reorganiser = null;
+    JPanel jpanel1 = new JPanel();
+
+
+    
     protected JFrame frame;
     
     /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
@@ -60,7 +65,10 @@ public class View extends abstrVue implements Observer,ActionListener{
     public void update(Observable arg0, Object arg1) {
 
         System.out.println("Vue: mamamia le model m'ordonne de me réafficher !");
+        // TODO rescanner le graph
         frame.repaint();
+        jpanel1.repaint();
+        repaint();
      }
 
 
@@ -78,7 +86,7 @@ public class View extends abstrVue implements Observer,ActionListener{
 
 
     public void actionPerformed(ActionEvent arg0) {
-
+        
         if(arg0.getSource() == testPatronObsv) {
             procTestPatronObsv();
         } else if(arg0.getSource() == reorganiser) {
@@ -94,9 +102,9 @@ public class View extends abstrVue implements Observer,ActionListener{
     public void initControleur (Controler controle) {
 
         this.controler = controle;
-        JPanel jpanel1 = new JPanel();
+        
         // The Layout<V, E> is parameterized by the vertex and edge types
-        layout = new SpringLayout<VueNoeud, VueArrete>(controle.getGraph().getGraph());
+        layout = new SpringLayout2<VueNoeud, VueArrete>(controle.getGraph().getGraph());
         layout.setSize(new Dimension(300,300)); // sets the initial size of the space
          // The BasicVisualizationServer<V,E> is parameterized by the edge types
          vv =new BasicVisualizationServer<VueNoeud,VueArrete>(layout);
