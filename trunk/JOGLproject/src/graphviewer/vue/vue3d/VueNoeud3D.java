@@ -1,6 +1,6 @@
 package graphviewer.vue.vue3d;
 
-import graphviewer.vue.VueNoeud;
+import graphviewer.vue.vue2d.VueNoeud;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;

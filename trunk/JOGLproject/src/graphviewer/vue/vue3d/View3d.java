@@ -5,6 +5,8 @@
 
 package graphviewer.vue.vue3d;
 
+import graphviewer.vue.vue2d.VueArrete;
+import graphviewer.vue.vue2d.VueNoeud;
 import graphviewer.vue.*;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.algorithms.layout.SpringLayout;

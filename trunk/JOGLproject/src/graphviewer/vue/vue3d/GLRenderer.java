@@ -1,8 +1,8 @@
 package graphviewer.vue.vue3d;
 
 import graphviewer.model.visualisation.GraphDeVisualisation;
-import graphviewer.vue.VueArrete;
-import graphviewer.vue.VueNoeud;
+import graphviewer.vue.vue2d.VueArrete;
+import graphviewer.vue.vue2d.VueNoeud;
 import java.util.ArrayList;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -21,13 +21,6 @@ public class GLRenderer implements GLEventListener {
 
     
     public GraphDeVisualisation3D graphDeVisualisation = null;
-    
-
-/*
-    GLRenderer() {
-        super();
-    }
-*/
 
     GLRenderer(GraphDeVisualisation3D graph) {
         super();

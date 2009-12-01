@@ -8,20 +8,26 @@ package graphviewer.vue.vue3d;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 import graphviewer.model.visualisation.GraphDeVisualisation;
-import graphviewer.vue.VueArrete;
-import graphviewer.vue.VueNoeud;
+import graphviewer.vue.vue2d.VueArrete;
+import graphviewer.vue.vue2d.VueNoeud;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import javax.media.opengl.GLAutoDrawable;
 
 /**
- *
+ *  Cette classe conserve les donnée propre au graph de visualisation pour un représentation en deux dimension.
+ *<p>
+ * Dans la version actuelle de notre programme:
  * @author Mathouston
  */
-public class GraphDeVisualisation3D extends Observable implements Observer{//UndirectedSparseGraph implements Observer{
+public class GraphDeVisualisation3D extends Observable implements Observer{
 
+    /**
+    * Structure de donnée conservant les donnée du graph
+    */
     public Graph<VueNoeud3D,VueArrete3D> graph = new UndirectedSparseGraph();
+    
     private ArrayList<VueNoeud3D> listeNoeud = new ArrayList<VueNoeud3D>();
     private ArrayList<VueArrete3D> listeArc = new ArrayList<VueArrete3D>();
     private VueNoeud3D vn;
@@ -41,7 +47,11 @@ public class GraphDeVisualisation3D extends Observable implements Observer{//Und
 
 
    
-
+    /**
+     * Crée une instant a partir d'une structure de donnée {@link GraphDeVisualisation}
+     *
+     * @param newGraph
+     */
     public GraphDeVisualisation3D(GraphDeVisualisation newGraph) {
         newGraph.addObserver(this);
 
@@ -74,30 +84,11 @@ public class GraphDeVisualisation3D extends Observable implements Observer{//Und
         }
     }
 
-
-
-
-    public void setListeArc(ArrayList<VueArrete> listeArc) {
-
-        VueNoeud tmp,tmp1;
-        /*
-        for (VueArrete arc : listeArc) {
-            tmp = arc.get
-            this.listeArc.add(new VueArrete(tmp, tmp1));
-            tmp1= tmp;
-        }
-        */
-
-    }
-
-    public void setListeNoeud(ArrayList<VueNoeud> listeNoeud) {
-        for (VueNoeud noeud : listeNoeud) {
-            this.listeNoeud.add(new VueNoeud3D(noeud.getX(),noeud.getY(),noeud.getZ()));
-        }
-
-    }
-    
-
+/**
+ * Ajouter un noeud des le graphe de visualisation en 3 dimension.
+ * 
+ * @param nv nnoeud a ajouter.
+ */
     public void ajouterNoeud(VueNoeud3D nv){
         listeNoeud.add(nv);
     }
