@@ -20,6 +20,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import com.sun.opengl.util.Animator;
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -73,11 +74,12 @@ public class View3d extends abstrVue implements Observer,ActionListener{
         graph = new GraphDeVisualisation3D(controle.getGraph());
         graph.addObserver(this);
 
-        frame.setLayout(new GridLayout(0,1));
+        frame.setLayout(new BorderLayout());
         panel = new GLJPanel(createGLCapabilites());
         panel.addGLEventListener(new GLRenderer(graph));
+        panel.setPreferredSize(new Dimension(600, 600));
         animator = new Animator(panel);
-        frame.add(panel);
+        frame.add(panel, BorderLayout.CENTER);
 
 
         // TODO Ceci est un bouton bibon pour tester la mise en place du patron Observer
@@ -88,7 +90,7 @@ public class View3d extends abstrVue implements Observer,ActionListener{
          reorganiser = new JButton("réorganiser");
          reorganiser.addActionListener(this);
          commandejpanel.add(reorganiser);
-         frame.add(commandejpanel);
+         frame.add(commandejpanel, BorderLayout.SOUTH);
 
         
         frame.setPreferredSize(new Dimension(800, 600));

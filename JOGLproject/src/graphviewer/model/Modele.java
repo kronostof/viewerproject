@@ -1,8 +1,4 @@
 package graphviewer.model;
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -20,17 +16,18 @@ public class Modele extends Observable{
 
 
     /**
-     * TODO : donnée des attributs au membre de cette classe (private ? public ? protected ?).
-     */
-    /**
-     *  graph est le graphe nommé GRAPHE de DOnnées lors de la réunion du jeudi 15 oct
+     *  graph est le graphe nommé <graph de données> lors de la réunion du jeudi 15 oct
      */
     Graph<ModeleNoeud,ModeleArrete> graph = null;
+    
     ModeleNoeud n1 = null ;
     ModeleNoeud n2 = null;
 
 
-
+    /**
+     *  graph est le graphe nommé <graph de visualisation> lors de la réunion du jeudi 15 oct
+     * atention ce graphe est représentatble directement uniquement en utilisant la lib JUNG
+     */
     GraphDeVisualisation graphVisualisation = null;
 
 
@@ -42,12 +39,8 @@ public class Modele extends Observable{
      * les chance de donner des résultats assez drôles.
      */
     private int i;
+
     
-    /**
-     * Génération a partir de code en 'dur' pour l'instant, le model se contente de proposer un graph existant
-     * pour l'instant. Quand la gestion d'importation de graph sera plus avancée, il faudra remplacer ceci par
-     * qlq chose de plus consequent.
-     */
     public Modele() {
         super();
 
@@ -127,7 +120,7 @@ public class Modele extends Observable{
         n1 = new ModeleNoeud(i, i, i, i+" nom ", i+" prenom ", new Date());
         new_graph.addVertex(n1);
         listeDeNoeud.add(n1);
-        for (i = 1; i < 10; i++) {
+        for (i = 1; i < 4; i++) {
             n2 = new ModeleNoeud(i, i, i, i + " nom ", i +" prenom ", new Date());
 
             listeDeNoeud.add(n2);

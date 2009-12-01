@@ -7,22 +7,13 @@
 package graphviewer.vue.vue3d;
 
 import com.sun.opengl.util.Animator;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
 
 /**
  *
@@ -45,23 +36,6 @@ public class Vue extends JPanel {
         panel.addGLEventListener(new GLRenderer(graph));
         animator = new Animator(panel);
 
-/*
-        this.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Run this on another thread than the AWT event queue to
-                // make sure the call to Animator.stop() completes before
-                // exiting
-                new Thread(new Runnable() {
-
-                    public void run() {
-                        animator.stop();
-                        System.exit(0);
-                    }
-                }).start();
-            }
-        });*/
     }
 
     @Override
@@ -97,6 +71,7 @@ public class Vue extends JPanel {
         //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         commandeLabel.setText("Below you see a GLJPanel");
+
 
         GroupLayout panelLayout = new GroupLayout(panel);
         panel.setLayout(panelLayout);

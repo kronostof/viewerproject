@@ -5,7 +5,7 @@
 
 package graphviewer.vue.vue3d;
 
-import edu.uci.ics.jung.graph.Graph;
+
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -18,11 +18,11 @@ class reorganisationtest extends Observable implements Runnable {
     ArrayList<nouvelleInfo> listaModifier = new ArrayList<nouvelleInfo>();
     private final GraphDeVisualisation3D vgraph;
 
-    
+
     reorganisationtest(GraphDeVisualisation3D graph) {
         this.vgraph = graph;
         for (VueNoeud3D vueNoeud : graph.graph.getVertices()) {
-            listaModifier.add(new nouvelleInfo((float)Math.random()*20-10,(float)Math.random()*20-10,vueNoeud.getZ(),vueNoeud));
+            listaModifier.add(new nouvelleInfo((float)Math.random()*20-10,(float)Math.random()*20-10,(float)Math.random()*20-20,vueNoeud));
         }
         //start();
     }
@@ -42,7 +42,7 @@ class reorganisationtest extends Observable implements Runnable {
             }
              System.out.println("test");
             vgraph.setData();
-            
+
         }
     }
 
@@ -88,10 +88,5 @@ class nouvelleInfo{
         public String toString() {
             return "X= " + x +"Y= " + y +"Z= " + z +"\t noeud : X= " + noeud.getX() +"Y= " + noeud.getY() +"Z= " + noeud.getZ() ;
         }
-
-
-
 }
-
-
 }
