@@ -10,7 +10,6 @@ import graphviewer.vue.abstrVue;
  */
 public class Controler {
 
-
     /**
     * objet conservant le modele
     */

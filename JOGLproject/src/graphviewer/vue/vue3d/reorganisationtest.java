@@ -5,9 +5,12 @@
 
 package graphviewer.vue.vue3d;
 
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,9 +18,8 @@ import java.util.Observable;
  */
 class reorganisationtest extends Observable implements Runnable {
 
-    ArrayList<nouvelleInfo> listaModifier = new ArrayList<nouvelleInfo>();
+    private ArrayList<nouvelleInfo> listaModifier = new ArrayList<nouvelleInfo>();
     private final GraphDeVisualisation3D vgraph;
-
 
     reorganisationtest(GraphDeVisualisation3D graph) {
         this.vgraph = graph;
@@ -27,17 +29,18 @@ class reorganisationtest extends Observable implements Runnable {
 
     @Override
     public void run() {
-        boolean test = true;
-         while(test){
-            test = false;
-            for (nouvelleInfo info : listaModifier) {
-                if(!info.rapprocher(info)){
-                    listaModifier.remove(info);
-                }
-                test = true;
-            }
-            vgraph.setData();
 
+        boolean test = true;
+        while(test){
+            test = false;
+            synchronized(listaModifier){
+                for (nouvelleInfo info : listaModifier) {
+                    if(!info.rapprocher(info))
+                        listaModifier.remove(info);
+                    test = true;
+                }
+            }
+        vgraph.setData();
         }
     }
 
