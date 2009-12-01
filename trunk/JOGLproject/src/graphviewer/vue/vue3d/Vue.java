@@ -8,6 +8,7 @@ package graphviewer.vue.vue3d;
 
 import com.sun.opengl.util.Animator;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
@@ -27,45 +29,23 @@ import javax.swing.WindowConstants;
  * @author cylab
  * @author mbien
  */
-public class Vue extends JFrame {
+public class Vue extends JPanel {
 
     private Animator animator;
 
-
-    /** Creates new form MainFrame */
-/*    public Vue() {
-        initComponents();
-        setTitle("Simple Graph Viewer");
-
-        panel.addGLEventListener(new GLRenderer());
-        animator = new Animator(panel);
-
-        this.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                // Run this on another thread than the AWT event queue to
-                // make sure the call to Animator.stop() completes before
-                // exiting
-                new Thread(new Runnable() {
-
-                    public void run() {
-                        animator.stop();
-                        System.exit(0);
-                    }
-                }).start();
-            }
-        });
-    }
-*/
     Vue(GraphDeVisualisation3D graph) {
 
+
+
+
+        
         initComponents();
-        setTitle("Simple Graph Viewer");
+        //setTitle("Simple Graph Viewer");
 
         panel.addGLEventListener(new GLRenderer(graph));
         animator = new Animator(panel);
 
+/*
         this.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -81,7 +61,7 @@ public class Vue extends JFrame {
                     }
                 }).start();
             }
-        });
+        });*/
     }
 
     @Override
@@ -101,26 +81,36 @@ public class Vue extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        JLabel label = new JLabel();
+
+
+        JPanel commandePanel = new JPanel();
+        commandePanel.setLayout(new FlowLayout());
+        JLabel commandeLabel = new JLabel();
+
+
+        commandePanel.add(commandeLabel);
+
+
+        
         panel = new GLJPanel(createGLCapabilites());
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        label.setText("Below you see a GLJPanel");
+        commandeLabel.setText("Below you see a GLJPanel");
 
         GroupLayout panelLayout = new GroupLayout(panel);
         panel.setLayout(panelLayout);
+        
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(Alignment.LEADING)
             .addGap(0, 1600, Short.MAX_VALUE)
-
         );
+
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(Alignment.LEADING)
             .addGap(0, 1000, Short.MAX_VALUE)
-
         );
-
+/*
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +119,7 @@ public class Vue extends JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label))
+                    .addComponent(commandePanel))
                 .addContainerGap())
 
         );
@@ -137,14 +127,14 @@ public class Vue extends JFrame {
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label)
+                .addComponent(commandePanel)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
 
         );
 
-        pack();
+        pack();*/
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -165,28 +155,7 @@ public class Vue extends JFrame {
         return capabilities;
     }
 
-    /**
-    * @param args the command line arguments
-    */
-  /*  public static void main(String args[]) {
-        // Run this in the AWT event thread to prevent deadlocks and race conditions
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                // switch to system l&f for native font rendering etc.
-                try{
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                }catch(Exception ex) {
-                    Logger.getLogger(getClass().getName()).log(Level.INFO, "can not enable system look and feel", ex);
-                }
-
-                Vue frame = new Vue();
-                frame.setVisible(true);
-            }
-        });
-    }
-*/
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GLJPanel panel;
     // End of variables declaration//GEN-END:variables
 
