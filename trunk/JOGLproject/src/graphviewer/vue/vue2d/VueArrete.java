@@ -60,12 +60,12 @@ public class VueArrete {
  * en conservant l'information indiquant quels noeuds sont relié grace a elle.
  *
  * @param modeleArrete {@link ModeleArrete} utilisée pour la construction.
- * @param n1
- * @param n2
+ * @param vueNoeud1
+ * @param vueNoeud2
  */
-     public VueArrete(ModeleArrete modeleArrete,VueNoeud vueNoeud1, VueNoeud VueNoeud2) {
+     public VueArrete(ModeleArrete modeleArrete,VueNoeud vueNoeud1, VueNoeud vueNoeud2) {
         this.n1 = vueNoeud1;
-        this.n2 = VueNoeud2;
+        this.n2 = vueNoeud2;
         couleur = Color.red;
         id = modeleArrete.getID();
     }

@@ -6,8 +6,9 @@ import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
 import javax.media.opengl.glu.GLUquadric;
 
+
 /**
- *
+ * Representation d'un noeud pour une visualisation en 3 dimension.
  * @author Mathouston
  */
 public class VueNoeud3D {
@@ -53,15 +54,24 @@ public class VueNoeud3D {
             glu.gluDeleteQuadric(params);
         gl.glPopMatrix();
     }
-
+    /**
+     * retourne la valeur de la position en x
+     * @return x.
+     */
     public float getX(){
         return x;
     }
-
+    /**
+     * retourne la valeur de la position en y
+     * @return y.
+     */
     public float getY(){
         return y;
     }
-
+    /**
+     * retourne la valeur de la position en z.
+     * @return z.
+     */
     public float getZ(){
         return z;
     }
@@ -87,19 +97,25 @@ public class VueNoeud3D {
         this.y = y;
         this.z = z;
     }
-
+    /**
+     * modifie la valeur de la position en x
+     * @param x    nouvelle valeur de x.
+     */
     public void setX(float x) {
         this.x = x;
     }
-
+    /**
+     * modifie la valeur de la position en y.
+     * @param y    nouvelle valeur de y.
+     */
     public void setY(float y) {
         this.y = y;
     }
-
+    /**
+     * modifie la valeur de la position en z.
+     * @param z    nouvelle valeur de z.
+     */
     public void setZ(float z) {
         this.z = z;
     }
-  
-
-
 }

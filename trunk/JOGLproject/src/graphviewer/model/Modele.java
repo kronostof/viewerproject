@@ -71,9 +71,9 @@ public class Modele extends Observable{
     }
 
     /**
-     * fournir le graph du model. On peut imaginer que par la suite on puissent selectionner une partie de graph
+     * fourni le graph du model. On peut imaginer que par la suite on puissent selectionner une partie de graph
      * ou l'un des sous graphe du model
-     * @return
+     * @return le graphe de visualisation fait par le modèle
      */
     public GraphDeVisualisation getGraph() {
         return graphVisualisation;

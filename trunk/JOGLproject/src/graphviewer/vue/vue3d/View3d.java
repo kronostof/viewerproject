@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package graphviewer.vue.vue3d;
 
-import graphviewer.vue.vue2d.VueArrete;
-import graphviewer.vue.vue2d.VueNoeud;
-import graphviewer.vue.*;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.SpringLayout;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
+import graphviewer.vue.abstrVue;
 
 import graphviewer.controleur.Controler;
 import graphviewer.model.Modele;
@@ -24,8 +15,6 @@ import javax.swing.JPanel;
 import com.sun.opengl.util.Animator;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLJPanel;
 import javax.swing.GroupLayout;
@@ -37,18 +26,16 @@ import javax.swing.WindowConstants;
 
 
 /**
- *
+ * Classe proposant un affichage en 3 dimention d'un graphe.
+ *<p>
+ * Dans la version actuelle de notre programme:
+ * Cette classe corespond a l'objectif a atteindre.<br>
+ * Son implémentation utilise les schémas de conception établie, et permet une utilisation de l'ensemble de la structure du programme.
  * @author vincent
  */
 public class View3d extends abstrVue implements Observer,ActionListener{
 
     private Animator animator;
-    Controler controler = null;
-
-
-    Layout<VueNoeud,VueArrete> layout = null;
-    BasicVisualizationServer<VueNoeud,VueArrete> vv = null;
-
     private JFrame frame;
     /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
      * le model notifie qu'il est modifier, l'interface en écoutant se réaffiche (normalement !)
@@ -56,19 +43,29 @@ public class View3d extends abstrVue implements Observer,ActionListener{
     JButton testPatronObsv = null;
     JButton reorganiser = null;
 
+    /**
+     * Structure de donnée conservant la structure de donnée de graph de visualisation en 3D
+     */
     GraphDeVisualisation3D graph;
     private JPanel commandejpanel = new JPanel();;
 
 
-
+    /**
+     * Construit la vue permettant de gérer l'affichage en 3 dimention du graph.
+     */
     public View3d () {
-
         super();
         frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-
+    /**
+     * initialisation de la vue en fonction du controleur<br>
+     * L'instance de classe controleur passé en paramètre doit avoir été initialisée <br>
+     * ici ce fait la gestion des osberver
+     * @param controle le controleur de l application.
+     * @see Controler
+     */
     @Override
     public void initControleur (final Controler controle) {
 
@@ -102,6 +99,16 @@ public class View3d extends abstrVue implements Observer,ActionListener{
         
     }
 
+
+    /**
+    * initialisation de la vue en fonction du model<br>
+    * L'instance de classe model passé en paramètre doit avoir été initialisée <br>
+    * voir {@link Modele}
+    * ici ce fait la gestion des osberver
+    * @param model le model de l application.
+    * @see   Controler
+    * @see   Modele
+    */
     @Override
    public void initModele(Modele model) {
     model.addObserver(this); // (2) ajout d'observateur
@@ -109,21 +116,14 @@ public class View3d extends abstrVue implements Observer,ActionListener{
 
 
     public void update(Observable arg0, Object arg1) {
-
-        System.out.println("Vue: mamamia je dois me réafficher !");
         frame.repaint();
      }
 
-
     void procTestPatronObsv(){
-        System.out.println("Vue: ya ya to to qui qui se sent pressé !");
-        System.out.println("Vue: On va tout rapporter au controleur, niark niark niark !!!");
         controler.uneModifAjouterNoeud();
     }
 
     void procReorganiser() {
-        //demande au graph de changer la position de ses noeuds
-
         graph.organize();
     }
 
@@ -137,31 +137,6 @@ public class View3d extends abstrVue implements Observer,ActionListener{
             procReorganiser();
         }
     }
-
-    /*
-    private void initpaneauCommande() {
-        commandePanel.setLayout(new FlowLayout());
-        JLabel commandeLabel = new JLabel();
-        commandeLabel.setText("panneau de comande");
-
-        commandePanel.add(commandeLabel);
-
-        commandeLabel.setText("Below you see a GLJPanel");
-
-
-         testPatronObsv = new JButton("(toto) tester pattron observer");
-        // testPatronObsv.addActionListener(this);
-         commandePanel.add(testPatronObsv);
-         //TODO : ceci est un essai de vincent pour la réorga spatiale du graphe
-         reorganiser = new JButton("réorganiser");
-         //reorganiser.addActionListener(this);
-         commandePanel.add(reorganiser);
-    }
-*/
-
-
-
-    
 
     @Override
     public void setVisible(boolean show){
@@ -253,9 +228,6 @@ public class View3d extends abstrVue implements Observer,ActionListener{
 
         return capabilities;
     }
-
-
-
 
 // Variables declaration - do not modify//GEN-BEGIN:variables
     private GLJPanel panel;

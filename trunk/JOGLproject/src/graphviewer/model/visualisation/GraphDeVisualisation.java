@@ -61,7 +61,7 @@ public class GraphDeVisualisation extends Observable{
 
     /**
      * Renvoi le graph conservant les informations du graph de visualisation.
-     * @return
+     * @return la structure de donnée graph
      */
     public Graph<VueNoeud, VueArrete> getGraph() {
         return graph;

@@ -21,13 +21,9 @@ class reorganisationtest extends Observable implements Runnable {
 
     reorganisationtest(GraphDeVisualisation3D graph) {
         this.vgraph = graph;
-        for (VueNoeud3D vueNoeud : graph.graph.getVertices()) {
+        for (VueNoeud3D vueNoeud : graph.graph.getVertices())
             listaModifier.add(new nouvelleInfo((float)Math.random()*20-10,(float)Math.random()*20-10,(float)Math.random()*20-20,vueNoeud));
-        }
-        //start();
     }
-
-
 
     @Override
     public void run() {
@@ -40,7 +36,6 @@ class reorganisationtest extends Observable implements Runnable {
                 }
                 test = true;
             }
-             System.out.println("test");
             vgraph.setData();
 
         }

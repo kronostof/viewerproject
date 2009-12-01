@@ -37,7 +37,14 @@ public class View extends abstrVue implements Observer,ActionListener{
     
     Layout<VueNoeud,VueArrete> layout = null;
     BasicVisualizationServer<VueNoeud,VueArrete> vv = null;
+
+    /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
+    * le model notifie qu'il est modifier, l'interface en écoutant se réaffiche (normalement !)
+    */
     JButton testPatronObsv = null;
+    /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
+     * le model notifie qu'il est modifier, l'interface en écoutant se réaffiche (normalement !)
+     */
     JButton reorganiser = null;
     JPanel jpanel1 = new JPanel();
 
@@ -45,9 +52,7 @@ public class View extends abstrVue implements Observer,ActionListener{
     
     protected JFrame frame;
     
-    /** bouton bidon pour tester le patern observer en modifiant le model (equivalent a une modif a la souris)
-     * le model notifie qu'il est modifier, l'interface en écoutant se réaffiche (normalement !)
-     */
+
    
 
     public View () {
@@ -62,24 +67,18 @@ public class View extends abstrVue implements Observer,ActionListener{
     
 
     public void update(Observable arg0, Object arg1) {
-
-        System.out.println("Vue: mamamia le model m'ordonne de me réafficher !");
-        // TODO rescanner le graph
-        frame.repaint();
+       frame.repaint();
         jpanel1.repaint();
         repaint();
      }
 
 
     void procTestPatronObsv(){
-        System.out.println("Vue: ya ya to to qui qui se sent pressé !");
-        System.out.println("Vue: On va tout rapporter au controleur, niark niark niark !!!");
         controler.uneModifAjouterNoeud();
     }
 
     void procReorganiser() {
-        //demande au controleur de dire au modele de se reorga en fonction de ce que je lui demande
-        controler.organize();
+       controler.organize();
     }
 
 
@@ -96,7 +95,13 @@ public class View extends abstrVue implements Observer,ActionListener{
 
 
 
-
+    /**
+     * initialisation de la vue en fonction du controleur<br>
+     * L'instance de classe controleur passé en paramètre doit avoir été initialisée <br>
+     * ici ce fait la gestion des osberver
+     * @param controle le controleur de l application.
+     * @see Controler
+     */
     @Override
     public void initControleur (Controler controle) {
 
@@ -126,6 +131,17 @@ public class View extends abstrVue implements Observer,ActionListener{
 
     }
 
+
+    /**
+    * initialisation de la vue en fonction du model<br>
+    * L'instance de classe model passé en paramètre doit avoir été initialisée <br>
+    * voir {@link Modele}
+    * ici ce fait la gestion des osberver
+    * @param model le model de l application.
+    * @see   Controler
+    * @see   Modele
+    */
+    @Override
    public void initModele(Modele model) {
     model.addObserver(this); // (2) ajout d'observateur
   }
