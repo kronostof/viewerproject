@@ -21,17 +21,24 @@ import graphviewer.model.Modele;
 import javax.swing.JPanel;
 
 import java.awt.Dimension;
+
 /**
+ * Classe abstraite utilisée pour implémenter tout les type de vue.
  *
  * @author chris
  */
 public abstract class abstrVue extends JFrame implements Observer,ActionListener{
 
+
+
     Controler controler = null;
 
 
-
-    
+    /**
+     * initialisation de la vue en fonction du controleur
+     * ici ce fait la gestion des osberver
+     * @param controle
+     */
     public void initControleur (Controler controle) {
 
        /* this.controler = controle;
