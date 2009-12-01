@@ -16,8 +16,6 @@ public class VueArrete {
      */
     private int id = -1;
     private VueNoeud n1=null,n2=null;
-
-
     /**
      * retourne la valeur de l'identifiant de l'instance.
      * @return identifiant de l'instance.
