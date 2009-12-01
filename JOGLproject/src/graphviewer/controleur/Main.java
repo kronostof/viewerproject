@@ -7,19 +7,17 @@ package graphviewer.controleur;
 
 import graphviewer.model.Modele;
 
-import graphviewer.vue.View;
+import graphviewer.vue.vue2d.View;
 import graphviewer.vue.vue3d.View3d;
 
 /**
  * classe principale du programme
- *
+ *<p>
+ * Dans la version actuelle de notre programme:
  * @author vincent
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         /**

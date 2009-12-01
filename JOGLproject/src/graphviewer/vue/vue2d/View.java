@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package graphviewer.vue;
+package graphviewer.vue.vue2d;
 
 
+import graphviewer.vue.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -17,9 +13,8 @@ import javax.swing.JFrame;
 import graphviewer.controleur.Controler;
 import javax.swing.JPanel;
 import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.SpringLayout;
 import edu.uci.ics.jung.algorithms.layout.SpringLayout2;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
+import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import graphviewer.model.Modele;
 
 
@@ -29,7 +24,11 @@ import java.awt.Dimension;
 
 
 /**
- *
+ * Classe proposant un affichage en 2 dimention d'un graphe.
+ *<p>
+ * Dans la version actuelle de notre programme:
+ * Cette classe se repose sur l'utilisation de la librairie JUNG.<br>
+ * Son implémentation a permit le développement du programme en proposant une visualisation des avancée fait a chaque étape.
  * @author vincent
  */
 public class View extends abstrVue implements Observer,ActionListener{

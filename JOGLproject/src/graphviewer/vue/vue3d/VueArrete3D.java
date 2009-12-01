@@ -5,7 +5,7 @@
 
 package graphviewer.vue.vue3d;
 
-import graphviewer.vue.VueArrete;
+import graphviewer.vue.vue2d.VueArrete;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;

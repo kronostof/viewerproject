@@ -1,43 +1,33 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package graphviewer.vue;
 
-import graphviewer.controleur.Controler;
-import javax.swing.JPanel;
-import edu.uci.ics.jung.algorithms.layout.Layout;
-import edu.uci.ics.jung.algorithms.layout.SpringLayout;
-import edu.uci.ics.jung.visualization.BasicVisualizationServer; // a ne pas utiliser
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import graphviewer.controleur.Controler;
 import graphviewer.model.Modele;
-import javax.swing.JPanel;
 
-import java.awt.Dimension;
-
+import java.awt.event.ActionListener;
+import java.util.Observer;
 /**
- * Classe abstraite utilisée pour implémenter tout les type de vue.
+ * Classe abstraite utilisée pour implémenter tout les type de vue.<br>
  *
+ * Une extension de cette classe peut être gérer par le programme afin de proposer une visualisation d'un graphe
+ * 
  * @author chris
  */
 public abstract class abstrVue extends JFrame implements Observer,ActionListener{
 
 
 
-    Controler controler = null;
+    protected Controler controler = null;
 
 
     /**
-     * initialisation de la vue en fonction du controleur
+     * initialisation de la vue en fonction du controleur<br>
+     * L'instance de classe controleur passé en paramètre doit avoir été initialisée <br>
+     * voir {@link Main}
      * ici ce fait la gestion des osberver
-     * @param controle
+     * @param controle le controleur de l application.
+     * @see   Controler
      */
     public void initControleur (Controler controle) {
 

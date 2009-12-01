@@ -1,25 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package graphviewer.model;
 
 /**
  *
+ * Cette classe permettrai de charger un fichier.
+ * <p>
+ * Dans la version actuelle de notre programme:  Le chargeur de fichier n'est pas fonctionnel.
  * @author chris
  */
 public class ChargeurFichier {
-    String nomFichier;
 
-    public ChargeurFichier(String nomFichier) {
-        this.nomFichier = nomFichier;
-        load();
+    private String nomFichier;
+
+
+    /**
+     * Construit le chargeur de fichier.
+     *
+     * @param nomFichier    nom du fichier a charger.
+     */
+    public ChargeurFichier() {
     }
 
-    private void load() {
-        throw new UnsupportedOperationException("Not yet implemented : Non mais tu crois quoi là !");
+    /**
+     * Charge le fichier passé en paramètre.
+     *
+     * @param nomFichier    Nom du fichier passé en paramètre.
+     */
+    public void load(String nomFichier) {
+        
         //TODO charger reelement le fichier
+        this.nomFichier = nomFichier;
+        throw new UnsupportedOperationException("Not yet implemented : Non mais tu crois quoi là !");
     }
 
 

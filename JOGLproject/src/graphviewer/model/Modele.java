@@ -6,12 +6,20 @@ package graphviewer.model;
  */
 import edu.uci.ics.jung.graph.*;
 import graphviewer.model.visualisation.GraphDeVisualisation;
-import graphviewer.vue.VueNoeud;
+import graphviewer.vue.vue2d.VueNoeud;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 
-
+/**
+ * Cette classe conserve et gère les donnée liée au graph chargée ou construit.
+ * <p>
+ *
+ * Dans la version actuelle de notre programme:
+ * <p>
+ * le graph est n'est pas chargé. Il est écris en 'dur'.
+ * @author chris
+ */
 public class Modele extends Observable{
 
 
