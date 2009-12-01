@@ -16,7 +16,7 @@ public class VueNoeud3D {
     private float y;
     private float z;
 
-    private static final float rayon = (float) 0.1;
+    private static final float rayon = (float) 0.2;
 
     public VueNoeud3D (float x, float y, float z){
 
@@ -74,13 +74,32 @@ public class VueNoeud3D {
     int getID() {
         return id;
     }
-
+//TODO a jarter !!! très vite - horible
     void setXYZ(double nx, double ny, int nz) {
         this.x = (float) nx;
         this.y = (float) ny;
         this.z = (float) nz;
     }
 
+    public void setXYZ(float x, float y, float z){
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setZ(float z) {
+        this.z = z;
+    }
+  
 
 
 }

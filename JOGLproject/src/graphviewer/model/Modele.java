@@ -90,7 +90,7 @@ public class Modele extends Observable{
         graph.addVertex(n2);
         listeDeNoeud.add(n2);
         graph.addEdge(new ModeleArrete(i),n2,listeDeNoeud.get(i-1));
-        n1 = n2;
+       // n1 = n2;
         System.out.println("model: Bon j'ai fini je dis a la vue de se bouger un peu.");
         setData();
        // System.out.println(graph);

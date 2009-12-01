@@ -19,8 +19,9 @@ import javax.media.opengl.GLAutoDrawable;
  *
  * @author Mathouston
  */
-public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Observer{
+public class GraphDeVisualisation3D extends Observable implements Observer{//UndirectedSparseGraph implements Observer{
 
+    public Graph<VueNoeud3D,VueArrete3D> graph = new UndirectedSparseGraph();
     private ArrayList<VueNoeud3D> listeNoeud = new ArrayList<VueNoeud3D>();
     private ArrayList<VueArrete3D> listeArc = new ArrayList<VueArrete3D>();
     private VueNoeud3D vn;
@@ -39,7 +40,7 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Obs
 
 
 
-    public Graph<VueNoeud3D,VueArrete3D> graph = new UndirectedSparseGraph();
+   
 
     public GraphDeVisualisation3D(GraphDeVisualisation newGraph) {
         newGraph.addObserver(this);
@@ -76,82 +77,6 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Obs
 
 
 
-/*
-    GraphDeVisualisation3D(GraphDeVisualisation newGraph) {
-
-        // TODO il faut faire le tour des information contenu ds le graphe de visualidation et l'integrer ici
-
-        // code repris honteusement dans la classe : GraphDeVisualisation
-        // quel honte, trop la classe!
-
-
-
-
-        VueNoeud3D vn = null;
-        VueArrete3D va = null;
-        VueNoeud n1=null, n2=null;
-
-        for (Object object : newGraph.graph.getVertices()) {
-            vn = new VueNoeud3D((VueNoeud)object);
-            ajouterNoeud(vn);
-            System.out.println(vn);
-        }
-
-        for (Object o1 : newGraph.graph.getVertices()) {
-            n1 = (VueNoeud)o1;
-            for (Object o2 : newGraph.graph.getVertices()) {
-                n2 = (VueNoeud)o2;
-
-                if ((newGraph.graph.findEdge(n1, n2)) != null){
-                    if ( graph.findEdge(
-                            getVueNoeudByID(n1.getId()),
-                            getVueNoeudByID(n2.getId())
-                            ) == null){
-                        va = new VueArrete((ModeleArrete)(newGraph.findEdge(n1,n2)));
-                        graph.addEdge(va, getVueNoeudByID(n1.getID()), getVueNoeudByID(n2.getID()));
-                    }
-                }
-            }
-        }
-
-
-
-
-/ *
-
-        VueNoeud3D nv1 = new VueNoeud3D(1.0f, 0.0f, -20.0f);
-        VueNoeud3D nv2 = new VueNoeud3D(0.0f, 1.0f, -20.0f);
-        VueNoeud3D nv3 = new VueNoeud3D(1.0f, 1.0f, -20.0f);
-        VueNoeud3D nv4 = new VueNoeud3D(0.0f, 0.0f, -20.0f);
-
-
-        VueArrete3D av1 = new VueArrete3D(nv1, nv2);
-        VueArrete3D av2 = new VueArrete3D(nv1, nv3);
-        VueArrete3D av3 = new VueArrete3D(nv1, nv4);
-
-
-        ajouterNoeud(nv1);
-        ajouterNoeud(nv2);
-        ajouterNoeud(nv3);
-        ajouterNoeud(nv4);
-
-         nv1 = new VueNoeud3D(1.0f, 0.0f, -10.0f);
-         nv2 = new VueNoeud3D(0.0f, 1.0f, -10.0f);
-         nv3 = new VueNoeud3D(1.0f, 1.0f, -10.0f);
-         nv4 = new VueNoeud3D(0.0f, 0.0f, -10.0f);
-
-        ajouterNoeud(nv1);
-        ajouterNoeud(nv2);
-        ajouterNoeud(nv3);
-        ajouterNoeud(nv4);
-
-
-        ajouterArc(av1);
-        ajouterArc(av2);
-        ajouterArc(av3);
-* /
-    }
-*/
     public void setListeArc(ArrayList<VueArrete> listeArc) {
 
         VueNoeud tmp,tmp1;
@@ -172,31 +97,7 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Obs
 
     }
     
-/*
-    public GraphDeVisualisation3D(){
-        
-        //Recupere liste NoeudModele -> NoeudVue
-        VueNoeud3D nv1 = new VueNoeud3D(1.0f, 0.0f, -20.0f);
-        VueNoeud3D nv2 = new VueNoeud3D(0.0f, 1.0f, -20.0f);
-        VueNoeud3D nv3 = new VueNoeud3D(1.0f, 1.0f, -20.0f);
-        VueNoeud3D nv4 = new VueNoeud3D(0.0f, 0.0f, -20.0f);
 
-        VueArrete3D av1 = new VueArrete3D(nv1, nv2);
-        VueArrete3D av2 = new VueArrete3D(nv1, nv3);
-        VueArrete3D av3 = new VueArrete3D(nv1, nv4);
-
-
-        ajouterNoeud(nv1);
-        ajouterNoeud(nv2);
-        ajouterNoeud(nv3);
-        ajouterNoeud(nv4);
-        ajouterArc(av1);
-        ajouterArc(av2);
-        ajouterArc(av3);
-
-    }
-*/
-    
     public void ajouterNoeud(VueNoeud3D nv){
         listeNoeud.add(nv);
     }
@@ -236,14 +137,31 @@ public class GraphDeVisualisation3D extends UndirectedSparseGraph implements Obs
     }
 
     public void update(Observable o, Object vueNoeud) {
-        System.out.println("XXXXXXXXXXXX    Not supported yet." + o + "XXX " + vueNoeud);
+
+System.out.println("c a  ezkfljeziofezjhiqfpoa  ezkfljeziofezjhiqfpoa  ezkfljeziofezjhiqfpo");
+        if (vueNoeud != null){
          vn = new VueNoeud3D((VueNoeud)vueNoeud);
             graph.addVertex(vn);
             listeNoeud.add(vn);
-
-        graph.addVertex(vn);
-            listeNoeud.add(vn);
+        }
     }
 
+    void organize() {
+        reorganisationtest r = new reorganisationtest(this);
+        Thread t = new Thread(r);
+
+
+        r.addObserver(this);
+        t.start();
+    }
+
+
+        public void setData() {
+
+            System.out.println("c a  ezkfljeziofezjhiqfpo");
+         setChanged(); // Positionne son indicateur de changement
+        notifyObservers(); // (1) notification
+
+    }
 
 }
