@@ -5,7 +5,7 @@ import graphviewer.model.visualisation.GraphDeVisualisation;
 import graphviewer.vue.abstrVue;
 
 /**
- *
+ * Controleur de l'application.
  * @author vincent
  */
 public class Controler {

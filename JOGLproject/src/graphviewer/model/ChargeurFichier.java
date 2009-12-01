@@ -15,7 +15,6 @@ public class ChargeurFichier {
     /**
      * Construit le chargeur de fichier.
      *
-     * @param nomFichier    nom du fichier a charger.
      */
     public ChargeurFichier() {
     }

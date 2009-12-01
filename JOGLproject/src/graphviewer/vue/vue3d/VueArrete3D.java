@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package graphviewer.vue.vue3d;
 
@@ -9,27 +5,45 @@ import graphviewer.vue.vue2d.VueArrete;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.glu.GLU;
-import javax.media.opengl.glu.GLUquadric;
 
+/**
+ * Representation d'une arrete pour une visualisation en 3 dimension.
+ *
+ * @author chris
+ */
 public class VueArrete3D {
+
     private int id = -1;
     private VueNoeud3D noeud1;
     private VueNoeud3D noeud2;
-
     private static final float rayon = (float) 0.01;
 
+/**
+ * Construit une arrete en conservant l'information indiquant quels noeuds sont relié grace a elle.
+ * @param n1    noeud reliée par cet arc
+ * @param n2    noeud reliée par cet arc
+ */
     public VueArrete3D(VueNoeud3D n1, VueNoeud3D n2){
             noeud1 = n1;
             noeud2 = n2;
 
     }
-
-    VueArrete3D(VueArrete vueArrete,VueNoeud3D n1, VueNoeud3D n2) {
+/**
+ * Construit une arrete a partir d'un objet {@link ModeleArrete} et de deux objet {@link VueArrete}
+ * en conservant l'information indiquant quels noeuds sont relié grace a elle.
+ *
+ * @param vueArrete {@link VueArrete} utilisée pour la construction.
+ * @param vueNoeud1
+ * @param vueNoeud2
+ */
+    VueArrete3D(VueArrete vueArrete,VueNoeud3D vueNoeud1, VueNoeud3D vueNoeud2) {
         id = vueArrete.getId();
 
-        noeud1 = n1;
-        noeud2 = n2;
+        noeud1 = vueNoeud1;
+        noeud2 = vueNoeud2;
     }
+
+
 
     public void afficher(GLAutoDrawable drawable){
         GL gl = drawable.getGL();

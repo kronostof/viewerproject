@@ -71,7 +71,7 @@ public class VueNoeud {
     }
     /**
      * modifie la valeur de la position en z.
-     * @param id    nouvelle valeur de z.
+     * @param z    nouvelle valeur de z.
      */
     public void setZ(double z) {
         this.z = z;

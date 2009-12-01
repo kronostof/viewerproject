@@ -24,13 +24,14 @@ import javax.media.opengl.GLAutoDrawable;
 public class GraphDeVisualisation3D extends Observable implements Observer{
 
     /**
-    * Structure de donnée conservant les donnée du graph
-    */
+     * Structure de donnée conservant les donnée du graph
+     */
     public Graph<VueNoeud3D,VueArrete3D> graph = new UndirectedSparseGraph();
     
     private ArrayList<VueNoeud3D> listeNoeud = new ArrayList<VueNoeud3D>();
     private ArrayList<VueArrete3D> listeArc = new ArrayList<VueArrete3D>();
     private VueNoeud3D vn;
+
 
 
     public ArrayList<VueArrete3D> getListeArc() {
@@ -92,44 +93,54 @@ public class GraphDeVisualisation3D extends Observable implements Observer{
     public void ajouterNoeud(VueNoeud3D nv){
         listeNoeud.add(nv);
     }
-
-    public void ajouterArc(VueArrete3D av){
-        listeArc.add(av);
+/**
+ * Ajouter un arc des le graphe de visualisation en 3 dimension.
+ *
+ * @param avArc arc a ajouter.
+ */
+    public void ajouterArc(VueArrete3D avArc){
+        listeArc.add(avArc);
     }
 
+
+    /**
+     * Afficher le graphe
+     * 
+     * @param drawable
+     */
     public void afficher(GLAutoDrawable drawable){
-
-        int i;
-
         // il faut absolument dessiner les arcs avant les noeuds... Sinon les arcs se redessinent sur les noeud (utiliser DepthTest ?)
-        VueArrete3D tempAV;
-        for (i=0 ;i<listeArc.size(); i++){
-            tempAV = (VueArrete3D) listeArc.get(i);
-            tempAV.afficher(drawable);
-        }
-
-        VueNoeud3D tempNV;
-        for (i=0 ;i<listeNoeud.size(); i++){
-            tempNV = (VueNoeud3D) listeNoeud.get(i);
-            tempNV.afficher(drawable);
-        }
-        
+        for (VueArrete3D vueArrete3D : listeArc)
+            vueArrete3D.afficher(drawable);
+       
+        for (VueNoeud3D vueNoeud3D : listeNoeud)
+                vueNoeud3D.afficher(drawable);
     }
 
-
+    /**
+     *
+     * Renvoi un noeud dont l'identifiant corespond a l'identifiant passée en paramètre.
+     *
+     * @param id    identifiant du noeud recherché.
+     * @return  le noeud recherché.
+     */
      public VueNoeud3D getVueNoeud3DByID(int id){
-      VueNoeud3D vn = null;
+      vn = null;
         for (VueNoeud3D vueNoeud3D : graph.getVertices()) {
-            vn = vueNoeud3D;
-            if (vn.getID()== id)
+            if (vueNoeud3D.getID()== id){
+                vn = vueNoeud3D;
                 break;
+            }
         }
         return vn;
     }
 
+     /**
+      * Permet de mettre a jour le graph de représentation tridimensionel.
+      * @param o
+      * @param vueNoeud
+      */
     public void update(Observable o, Object vueNoeud) {
-
-System.out.println("c a  ezkfljeziofezjhiqfpoa  ezkfljeziofezjhiqfpoa  ezkfljeziofezjhiqfpo");
         if (vueNoeud != null){
          vn = new VueNoeud3D((VueNoeud)vueNoeud);
             graph.addVertex(vn);
@@ -137,22 +148,20 @@ System.out.println("c a  ezkfljeziofezjhiqfpoa  ezkfljeziofezjhiqfpoa  ezkfljezi
         }
     }
 
+    /**
+     * Lance une réorganisation sur l'ensemble du graph.
+     */
     void organize() {
         reorganisationtest r = new reorganisationtest(this);
         Thread t = new Thread(r);
-
-
         r.addObserver(this);
         t.start();
     }
 
 
         public void setData() {
-
-            System.out.println("c a  ezkfljeziofezjhiqfpo");
-         setChanged(); // Positionne son indicateur de changement
-        notifyObservers(); // (1) notification
-
+            setChanged(); // Positionne son indicateur de changement
+            notifyObservers(); // (1) notification
     }
 
 }
