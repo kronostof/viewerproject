@@ -1,4 +1,3 @@
-
 package graphviewer.vue.vue3d;
 
 import graphviewer.vue.abstrVue;
@@ -24,7 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 
-
 /**
  * Classe proposant un affichage en 3 dimention d'un graphe.
  *<p>
@@ -33,7 +31,7 @@ import javax.swing.WindowConstants;
  * Son implémentation utilise les schémas de conception établie, et permet une utilisation de l'ensemble de la structure du programme.
  * @author vincent
  */
-public class View3d extends abstrVue implements Observer,ActionListener{
+public class View3d extends abstrVue implements Observer, ActionListener {
 
     private Animator animator;
     private JFrame frame;
@@ -42,18 +40,18 @@ public class View3d extends abstrVue implements Observer,ActionListener{
      */
     JButton testPatronObsv = null;
     JButton reorganiser = null;
-
     /**
      * Structure de donnée conservant la structure de donnée de graph de visualisation en 3D
      */
     GraphDeVisualisation3D graph;
-    private JPanel commandejpanel = new JPanel();;
+    private JPanel commandejpanel = new JPanel();
 
+    ;
 
     /**
      * Construit la vue permettant de gérer l'affichage en 3 dimention du graph.
      */
-    public View3d () {
+    public View3d() {
         super();
         frame = new JFrame("Simple Graph View");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +65,7 @@ public class View3d extends abstrVue implements Observer,ActionListener{
      * @see Controler
      */
     @Override
-    public void initControleur (final Controler controle) {
+    public void initControleur(final Controler controle) {
 
         this.controler = controle;
         graph = new GraphDeVisualisation3D(controle.getGraph());
@@ -75,51 +73,54 @@ public class View3d extends abstrVue implements Observer,ActionListener{
 
         frame.setLayout(new BorderLayout());
         panel = new GLJPanel(createGLCapabilites());
-        panel.addGLEventListener(new GLRenderer(graph));
+        GLRenderer glrender = new GLRenderer(graph);
+        panel.addGLEventListener(glrender);
         panel.setPreferredSize(new Dimension(600, 600));
+
+        GestionClavier gestionClavier = new GestionClavier(glrender);
+        panel.addMouseListener(gestionClavier);
+
         animator = new Animator(panel);
         frame.add(panel, BorderLayout.CENTER);
 
 
         // TODO Ceci est un bouton bibon pour tester la mise en place du patron Observer
-         testPatronObsv = new JButton("(toto) tester pattron observer");
-         testPatronObsv.addActionListener(this);
-         commandejpanel.add(testPatronObsv);
-         //TODO : ceci est un essai de vincent pour la réorga spatiale du graphe
-         reorganiser = new JButton("réorganiser");
-         reorganiser.addActionListener(this);
-         commandejpanel.add(reorganiser);
-         frame.add(commandejpanel, BorderLayout.SOUTH);
+        testPatronObsv = new JButton("Ajouter un noeud");
+        testPatronObsv.addActionListener(this);
+        commandejpanel.add(testPatronObsv);
+        //TODO : ceci est un essai de vincent pour la réorga spatiale du graphe
+        reorganiser = new JButton("Réorganiser le gaph");
+        reorganiser.addActionListener(this);
+        commandejpanel.add(reorganiser);
+        frame.add(commandejpanel, BorderLayout.SOUTH);
 
-        
+
         frame.setPreferredSize(new Dimension(800, 600));
         frame.pack();
 
         frame.setVisible(true);
-        
+
     }
 
-
     /**
-    * initialisation de la vue en fonction du model<br>
-    * L'instance de classe model passé en paramètre doit avoir été initialisée <br>
-    * voir {@link Modele}
-    * ici ce fait la gestion des osberver
-    * @param model le model de l application.
-    * @see   Controler
-    * @see   Modele
-    */
+     * initialisation de la vue en fonction du model<br>
+     * L'instance de classe model passé en paramètre doit avoir été initialisée <br>
+     * voir {@link Modele}
+     * ici ce fait la gestion des osberver
+     * @param model le model de l application.
+     * @see   Controler
+     * @see   Modele
+     */
     @Override
-   public void initModele(Modele model) {
-    model.addObserver(this); // (2) ajout d'observateur
-  }
-
+    public void initModele(Modele model) {
+        model.addObserver(this); // (2) ajout d'observateur
+    }
 
     public void update(Observable arg0, Object arg1) {
         frame.repaint();
-     }
+    }
 
-    void procTestPatronObsv(){
+    void procTestPatronObsv() {
         controler.uneModifAjouterNoeud();
     }
 
@@ -127,24 +128,24 @@ public class View3d extends abstrVue implements Observer,ActionListener{
         graph.organize();
     }
 
-
-
     public void actionPerformed(ActionEvent arg0) {
 
-        if(arg0.getSource() == testPatronObsv) {
+        if (arg0.getSource() == testPatronObsv) {
             procTestPatronObsv();
-        } else if(arg0.getSource() == reorganiser) {
+        } else if (arg0.getSource() == reorganiser) {
             procReorganiser();
         }
     }
 
     @Override
-    public void setVisible(boolean show){
-        if(!show)
+    public void setVisible(boolean show) {
+        if (!show) {
             animator.stop();
+        }
         super.setVisible(show);
-        if(!show)
+        if (!show) {
             animator.start();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -176,37 +177,17 @@ public class View3d extends abstrVue implements Observer,ActionListener{
         panel.setLayout(panelLayout);
 
         panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 1600, Short.MAX_VALUE)
-        );
+                panelLayout.createParallelGroup(Alignment.LEADING).addGap(0, 1600, Short.MAX_VALUE));
 
         panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
-        );
+                panelLayout.createParallelGroup(Alignment.LEADING).addGap(0, 1000, Short.MAX_VALUE));
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(commandePanel))
-                .addContainerGap())
-
-        );
+                layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(commandePanel)).addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(commandePanel)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-
-        );
+                layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(commandePanel).addPreferredGap(ComponentPlacement.RELATED).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addContainerGap()));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -228,7 +209,6 @@ public class View3d extends abstrVue implements Observer,ActionListener{
 
         return capabilities;
     }
-
 // Variables declaration - do not modify//GEN-BEGIN:variables
     private GLJPanel panel;
     // End of variables declaration//GEN-END:variables
