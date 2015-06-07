@@ -1,0 +1,3 @@
+Au sein de l'unitée d'enseignement 'MIF16 conduite de Projet' de la formation 'master I inforatique' gérée en 2009/10 par Mr Erwan GUILLOU, il nous est demandé de démarrer un projet en utilisant au maximum les outils et les mécanismes de gestion de projet.
+
+Viewerproject est conçut dans le but de permettre une représentation tridimensionnel de graph 2D ou 3D, avec la possibilité pour l'utilisation de choisir les caractéristiques de la représentation afin de mettre en valeur les informations de son choix permettant de souligner une corrélation entre les information.
